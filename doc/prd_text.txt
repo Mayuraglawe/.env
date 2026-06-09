@@ -1,0 +1,685 @@
+﻿
+
+
+
+
+
+
+PRODUCT REQUIREMENTS DOCUMENT
+
+SysDesign Arena
+
+Interactive System Design Learning Platform
+
+
+
+
+The n8n-style drag-and-drop canvas for mastering system design interviews
+
+Version
+
+1.0 — Pro Edition
+
+Status
+
+Draft — For Review
+
+Author
+
+Product Team
+
+Date
+
+June 03, 2026
+
+Target Audience
+
+Engineering Students, FAANG Aspirants, CS Graduates
+
+
+
+
+
+CONFIDENTIAL
+
+
+
+1. Executive Summary
+
+SysDesign Arena is a web-based, interactive learning platform that teaches system design through hands-on practice. Inspired by the workflow canvas of tools like n8n and the problem-set model of LeetCode, it gives candidates a drag-and-drop canvas populated with real system design building blocks — load balancers, CDNs, databases, queues, and more — and challenges them to assemble working architectures for real-world problems.
+
+The platform targets engineering students, fresh graduates, and professionals preparing for system design interviews at FAANG, MAANG, and product-based companies. The core insight is that system design is best learned by doing — not by reading blog posts or watching videos — and that immediate, structured AI-powered feedback accelerates learning faster than any textbook.
+
+
+[VISION] Every software engineer should be able to design scalable systems with confidence. SysDesign Arena is the arena where that confidence is built — one architecture at a time.
+
+
+2. Problem Statement
+
+System design is one of the hardest parts of senior engineering interviews — and one of the most poorly taught. Candidates face a significant preparation gap:
+
+
+Existing resources (books, YouTube, blogs) are passive — there is no way to practice building an architecture hands-on.
+
+
+Mock interviews are expensive, rare, and hard to schedule consistently.
+
+
+Candidates do not receive structured, objective feedback on their design decisions.
+
+
+The conceptual vocabulary of system design — sharding, replication, consistent hashing, CAP theorem — is learned in isolation rather than applied to real problems.
+
+
+There is no platform that bridges the gap between understanding a concept and deploying it inside a real design.
+
+
+[OPPORTUNITY] The system design interview prep market is estimated at $800M+ globally. No existing platform offers an interactive, canvas-based practice environment with AI-driven evaluation.
+
+
+3. Product Overview
+
+SysDesign Arena is structured around three core experiences that mirror how a candidate would approach a real system design interview: understand the problem, build the solution, and receive expert feedback.
+
+3.1 Problem Library
+
+A curated library of system design problems organized by difficulty and domain. Each problem is carefully written to mirror real interview questions at top companies, complete with realistic scale constraints.
+
+Difficulty
+
+Example Problems
+
+Scale Constraints
+
+Easy
+
+URL Shortener, Pastebin, Rate Limiter
+
+1–10M requests/day
+
+Medium
+
+Twitter Feed, Ride-Sharing, Notification System
+
+100M–1B requests/day
+
+Hard
+
+YouTube, Google Drive, Distributed Cache, Uber Surge
+
+1B+ requests/day, global
+
+Expert
+
+Ad Bidding Engine, Real-time Analytics, Global CDN
+
+10B+ events/day, &lt;10ms P99
+
+3.2 Interactive Design Canvas
+
+The canvas is the heart of the product. Candidates drag system design nodes from a categorized palette onto a grid, connect them with typed edges, and configure each node's properties. The canvas understands the semantics of system design — it knows a Load Balancer sits in front of API servers, that a Cache should have a hit rate, and that a Message Queue needs both a producer and a consumer.
+
+
+Dot-grid canvas with snap-to-grid for clean layout
+
+
+Node palette organized by category: Ingress, Compute, Storage, Messaging, Observability
+
+
+Typed connectors: synchronous (solid), asynchronous (dashed), read-only (dotted)
+
+
+Per-node configuration panel: choose DB engine, replication mode, cache policy, region
+
+
+Auto-layout mode for beginners who want suggested node placement
+
+
+Export design as PNG, SVG, or shareable link
+
+3.3 AI-Powered Evaluation Engine
+
+When a candidate submits their design, the evaluation engine analyzes the node graph and returns a structured scorecard across five dimensions. This is the core differentiator — no other platform provides instant, structured, expert-level feedback on a system design.
+
+Scalability
+
+Does the design handle 10x traffic growth without re-architecting?
+
+Availability
+
+Are there single points of failure? Is there replication and failover?
+
+Latency
+
+Are read paths optimized? Is caching correctly placed?
+
+Consistency
+
+Is the data model appropriate for the CAP tradeoff required?
+
+Cost Efficiency
+
+Is the design over-engineered for the stated scale? Any redundancies?
+
+
+4. System Design Node Taxonomy
+
+The node library is the vocabulary of the platform. Each node represents a real infrastructure component and carries metadata that the evaluation engine uses during scoring. Nodes are grouped into six categories.
+
+4.1 Ingress Layer
+
+
+DNS / GeoDNS — Routes users to the nearest data center
+
+
+CDN — Content Delivery Network for static assets and edge caching
+
+
+API Gateway — Single entry point; handles auth, rate limiting, routing
+
+
+Load Balancer — Layer 4 (TCP) or Layer 7 (HTTP) distribution
+
+
+Rate Limiter — Token bucket, sliding window, or leaky bucket algorithm
+
+4.2 Compute Layer
+
+
+API Server — Stateless application server; configurable replica count
+
+
+Microservice — Named service with defined responsibilities
+
+
+Background Worker — Consumes from queues; configurable concurrency
+
+
+Serverless Function — Event-driven compute for lightweight workloads
+
+
+WebSocket Server — Persistent connections for real-time features
+
+4.3 Storage Layer
+
+
+Relational Database — PostgreSQL / MySQL with configurable replication
+
+
+Document Store — MongoDB / Firestore for semi-structured data
+
+
+Key-Value Store — Redis / DynamoDB for simple lookups
+
+
+Time-Series DB — InfluxDB / TimescaleDB for metrics and events
+
+
+Search Index — Elasticsearch for full-text and faceted search
+
+
+Object Store — S3-compatible for blobs, media, backups
+
+
+Data Warehouse — Snowflake / BigQuery for analytics workloads
+
+4.4 Caching Layer
+
+
+In-Memory Cache — Redis / Memcached with configurable TTL and eviction policy
+
+
+Query Cache — Database-level query result caching
+
+
+Write-Through / Write-Behind — Configurable cache write strategy
+
+4.5 Messaging &amp; Streaming
+
+
+Message Queue — RabbitMQ / SQS; point-to-point delivery
+
+
+Event Stream — Kafka / Kinesis; ordered, replayable log
+
+
+Pub/Sub — Fan-out to multiple subscribers
+
+
+Scheduler — Cron-style job trigger
+
+4.6 Cross-Cutting Concerns
+
+
+Service Mesh — Sidecar-based service-to-service communication with mTLS
+
+
+Distributed Tracing — Spans and traces across services
+
+
+Metrics Collector — Prometheus / CloudWatch ingestion
+
+
+Circuit Breaker — Fault isolation and fallback logic
+
+
+Secrets Manager — Credential rotation and injection
+
+
+5. Feature Specifications
+
+5.1 Problem Statement Screen
+
+Before the canvas is shown, the candidate reads the problem statement. This screen is designed to mirror the first 5 minutes of a real interview — understanding requirements before drawing anything.
+
+
+Problem title, difficulty badge, and estimated time (e.g., 45 min)
+
+
+Narrative description of the system being built
+
+
+Functional requirements listed as user stories
+
+
+Non-functional requirements: scale, latency SLA, availability SLA, consistency model
+
+
+Clarifying questions the candidate should consider before starting
+
+
+Back-of-the-envelope estimation section: QPS, storage, bandwidth
+
+5.2 Canvas Interactions
+
+The canvas must feel as fluid as a whiteboard. Every interaction should have zero perceived lag.
+
+
+Drag nodes from palette — ghost preview while dragging, snap on drop
+
+
+Click node to open configuration sidebar with component-specific options
+
+
+Draw connections by hovering a node's output port and dragging to another node's input port
+
+
+Right-click context menu: duplicate, delete, add annotation, lock position
+
+
+Multi-select with shift-click or rubber-band selection; group move
+
+
+Undo / Redo stack (Cmd+Z / Cmd+Shift+Z)
+
+
+Minimap for large designs; pan and zoom with trackpad gestures
+
+
+Annotation nodes — sticky notes for explaining design decisions
+
+5.3 Submission and Evaluation
+
+Submission triggers the AI evaluation pipeline. The pipeline converts the canvas graph into a JSON representation and sends it to the evaluation model with the problem's scoring rubric.
+
+
+Pre-submission checklist: warns of disconnected nodes, missing configuration, obvious anti-patterns
+
+
+Evaluation runs in under 8 seconds — progress indicator shown
+
+
+Scorecard returned per dimension (0–100) with a radar chart visualization
+
+
+Inline annotations on the canvas highlight specific nodes with feedback
+
+
+Comparison view: side-by-side with reference solution (unlocked after first submission)
+
+
+Retry button: candidate can revise and resubmit up to 3 times per problem
+
+5.4 Hint System
+
+Hints are designed to guide without giving away the answer. They operate at three levels of specificity.
+
+Level 1 — Nudge
+
+High-level: 'Consider how reads are distributed relative to writes.'
+
+Level 2 — Concept
+
+Named concept: 'A read replica can reduce load on the primary database.'
+
+Level 3 — Component
+
+Direct: 'Add a Redis cache between your API server and PostgreSQL.'
+
+5.5 Learning Paths
+
+Beyond individual problems, SysDesign Arena offers structured learning paths — curated sequences of problems that build conceptual understanding progressively.
+
+
+Path: Storage Fundamentals — SQL, NoSQL, object stores, indexing
+
+
+Path: Scalability Patterns — Caching, sharding, replication, consistent hashing
+
+
+Path: Reliability Engineering — Replication, circuit breakers, health checks, SLAs
+
+
+Path: Real-Time Systems — WebSockets, pub/sub, event streaming, CQRS
+
+
+Path: FAANG Interview Prep — The 10 most common problems asked at top companies
+
+
+6. Technical Architecture
+
+6.1 Frontend Stack
+
+Framework
+
+React 18 with TypeScript
+
+Canvas Library
+
+React Flow (node-based graph rendering, pan/zoom, custom nodes)
+
+State Management
+
+Zustand for canvas state; React Query for server data
+
+Styling
+
+Tailwind CSS with custom design tokens
+
+Animation
+
+Framer Motion for node transitions and score animations
+
+Bundler
+
+Vite with code splitting per problem
+
+6.2 Backend Stack
+
+Runtime
+
+Node.js 20 with Fastify
+
+Database
+
+PostgreSQL (Supabase) — users, problems, submissions
+
+Realtime
+
+Supabase Realtime for live collaboration features
+
+Auth
+
+Supabase Auth — email, Google, GitHub OAuth
+
+File Storage
+
+Supabase Storage — design exports, reference solutions
+
+Job Queue
+
+BullMQ on Redis — evaluation jobs, notification dispatch
+
+6.3 AI Evaluation Engine
+
+Primary Model
+
+Claude Sonnet — complex graph analysis and structured feedback
+
+Input Format
+
+JSON graph: nodes array, edges array, problem ID, scale constraints
+
+Output Format
+
+Structured JSON: dimension scores, inline annotations, recommendations
+
+Latency Target
+
+P95 &lt; 8 seconds end-to-end
+
+Fallback
+
+Cached reference scoring for common node patterns
+
+6.4 Evaluation Graph Schema
+
+The canvas graph is serialized into a standardized JSON schema before being sent to the evaluation model. This schema captures topology, node configuration, and connection semantics.
+
+
+[SCHEMA] { nodes: [{ id, type, config, position }], edges: [{ source, target, edgeType }], meta: { problemId, candidateId, submittedAt } }
+
+
+7. Key User Journeys
+
+7.1 First-Time Candidate
+
+
+Lands on marketing page, sees demo of the canvas in action
+
+
+Signs up with Google OAuth — no credit card required
+
+
+Onboarding quiz: current role, interview timeline, target companies
+
+
+Platform recommends a starting problem (usually URL Shortener — Easy)
+
+
+Completes guided tour of canvas: how to drag nodes, connect, configure
+
+
+Builds first design, submits, receives scorecard
+
+
+Views reference solution comparison
+
+
+Prompted to start a Learning Path based on scorecard weaknesses
+
+7.2 Daily Practice Session
+
+
+Returns to platform, sees streak indicator and recommended next problem
+
+
+Opens problem — reads statement, does back-of-envelope estimate
+
+
+Builds design on canvas — uses 2 hints
+
+
+Submits — receives feedback with inline annotations
+
+
+Reviews reference solution, reads concept explanation for weakest dimension
+
+
+Marks problem complete, moves to next in learning path
+
+
+8. Monetization Strategy
+
+Tier
+
+Included Features
+
+Price
+
+Free
+
+10 problems, basic evaluation, 3 hint uses/day
+
+Free forever
+
+Pro
+
+All problems, full evaluation, unlimited hints, learning paths, progress analytics
+
+INR 499/month
+
+Pro Annual
+
+Everything in Pro, offline mode, design history, priority support
+
+INR 3,999/year
+
+Teams
+
+Pro for 5+ seats, manager dashboard, custom problem sets, interview simulation
+
+INR 1,999/seat/month
+
+
+[MARKET] Primary markets: India (tier-1 engineering colleges, service-to-product transitions), Southeast Asia, Eastern Europe. Secondary: US/UK self-study engineers preparing for FAANG.
+
+
+9. Success Metrics
+
+9.1 Acquisition
+
+
+Month 1–3: 2,000 registered users from college and developer communities
+
+
+Month 6: 10,000 registered users; 8% free-to-Pro conversion
+
+
+Month 12: 40,000 registered users; 500 Pro subscribers
+
+9.2 Engagement
+
+
+D7 retention: 35%+ (users return within 7 days of signup)
+
+
+Problems per session: 1.5 average
+
+
+Hint usage rate: 60% of sessions — indicates active engagement, not passivity
+
+
+Submission rate: 80%+ of started problems are submitted
+
+9.3 Learning Outcomes
+
+
+Average score improvement: 25+ points across 5 attempts on the same problem
+
+
+Learning path completion: 40%+ of started paths completed
+
+
+User-reported interview confidence: NPS &gt; 50 among Pro users
+
+
+10. Product Roadmap
+
+Phase
+
+Scope
+
+Timeline
+
+Phase 1 — MVP
+
+15 problems (5E/5M/5H), canvas with 20 nodes, basic AI eval, auth
+
+Months 1–2
+
+Phase 2 — Growth
+
+50 problems, learning paths, hints, progress dashboard, sharing
+
+Months 3–4
+
+Phase 3 — Pro
+
+Pro tier, teams, interview simulation mode, collaborative canvas
+
+Months 5–6
+
+Phase 4 — Scale
+
+100+ problems, mobile PWA, company-specific problem sets, API for colleges
+
+Months 7–12
+
+
+11. Risks and Mitigations
+
+AI eval latency &gt; 8s
+
+Cache common patterns; use streaming responses to show partial feedback early
+
+Canvas complexity too high for beginners
+
+Auto-layout mode; guided first problem; progressive node unlocking
+
+Low free-to-paid conversion
+
+Strict free tier limits; show score distribution vs. Pro users
+
+Content stale-ness
+
+Community problem submissions; quarterly problem audit; company-specific updates
+
+Competitor copies the model
+
+First-mover advantage; build network effects via shared designs and leaderboards
+
+
+12. Appendix — Glossary
+
+Node
+
+A draggable canvas element representing a system component (e.g., Load Balancer, Cache)
+
+Edge
+
+A directional connection between two nodes indicating data flow
+
+Topology
+
+The arrangement of nodes and edges forming a complete system design
+
+Evaluation Engine
+
+The AI pipeline that converts a canvas graph into a structured scorecard
+
+Learning Path
+
+A curated sequence of problems designed to teach a specific system design concept
+
+Back-of-Envelope
+
+Quick order-of-magnitude estimation of QPS, storage, and bandwidth before designing
+
+CAP Theorem
+
+Distributed systems can guarantee only 2 of: Consistency, Availability, Partition tolerance
+
+Sharding
+
+Horizontal partitioning of a database across multiple nodes to distribute load
+
+Read Replica
+
+A database copy that handles read traffic, reducing load on the primary instance
+
+CDN
+
+Content Delivery Network — servers at edge locations that cache content close to users
+
+

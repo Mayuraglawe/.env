@@ -1,5 +1,6 @@
 import useStore from '../store/useStore';
 
+// Settings page component allowing users to toggle appearance options and manage local data.
 export default function Settings() {
   const { isDarkMode, toggleDarkMode } = useStore();
 

@@ -18,6 +18,8 @@ export default function Settings() {
           <button 
             onClick={toggleDarkMode}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isDarkMode ? 'bg-brand-500' : 'bg-zinc-200'}`}
+            aria-label="Toggle Dark Mode"
+            title="Toggle Dark Mode"
           >
             <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isDarkMode ? 'translate-x-6' : 'translate-x-1'}`} />
           </button>

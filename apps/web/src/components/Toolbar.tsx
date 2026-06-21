@@ -128,9 +128,22 @@ export const Toolbar = () => {
         >
           <Download size={14} />
         </button>
-        <label className="w-8 h-8 rounded-lg bg-white dark:bg-[#222] border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-[#333] transition-colors shadow-sm cursor-pointer" title="Import JSON">
+        <label 
+          htmlFor="import-json-input"
+          className="w-8 h-8 rounded-lg bg-white dark:bg-[#222] border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-[#333] transition-colors shadow-sm cursor-pointer" 
+          title="Import JSON"
+        >
           <Upload size={14} />
-          <input type="file" accept=".json" className="hidden" onChange={importJson} ref={fileInputRef} />
+          <input 
+            id="import-json-input"
+            type="file" 
+            accept=".json" 
+            className="hidden" 
+            onChange={importJson} 
+            ref={fileInputRef} 
+            aria-label="Import JSON"
+            title="Import JSON"
+          />
         </label>
       </div>
 

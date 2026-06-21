@@ -24,6 +24,8 @@ export const ConfigPanel = () => {
         <button 
           onClick={() => setSelectedNodeId(null)}
           className="text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          aria-label="Close settings"
+          title="Close settings"
         >
           <X size={16} />
         </button>
@@ -31,21 +33,26 @@ export const ConfigPanel = () => {
 
       <div className="p-5 space-y-5">
         <div className="space-y-2">
-          <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Node Name</label>
+          <label htmlFor="node-name-input" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Node Name</label>
           <input 
+            id="node-name-input"
             type="text" 
             value={data.label as string}
             onChange={(e) => updateNodeData(selectedNodeId, { label: e.target.value })}
             className="w-full bg-white dark:bg-[#222] border border-zinc-200 dark:border-zinc-700 rounded-lg p-2 text-sm text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-shadow transition-colors"
+            placeholder="Node Name"
+            aria-label="Node Name"
+            title="Node Name"
           />
         </div>
 
         <div className="space-y-2">
           <div className="flex justify-between items-end">
-            <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Capacity (RPS)</label>
+            <label htmlFor="capacity-input" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Capacity (RPS)</label>
             <span className="text-xs font-mono text-brand-500 font-bold transition-colors">{capacity.toLocaleString()}</span>
           </div>
           <input 
+            id="capacity-input"
             type="range" 
             min="10" 
             max="10000" 
@@ -53,16 +60,20 @@ export const ConfigPanel = () => {
             value={capacity}
             onChange={(e) => updateNodeData(selectedNodeId, { capacity: parseInt(e.target.value) })}
             className="w-full accent-brand-500"
+            placeholder="Capacity (RPS)"
+            aria-label="Capacity (RPS)"
+            title="Capacity (RPS)"
           />
           <p className="text-[10px] text-zinc-400 dark:text-zinc-500 transition-colors">Maximum requests per second before bottlenecking.</p>
         </div>
 
         <div className="space-y-2">
           <div className="flex justify-between items-end">
-            <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Latency (ms)</label>
+            <label htmlFor="latency-input" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors">Latency (ms)</label>
             <span className="text-xs font-mono text-orange-500 font-bold transition-colors">{latency} ms</span>
           </div>
           <input 
+            id="latency-input"
             type="range" 
             min="1" 
             max="2000" 
@@ -70,6 +81,9 @@ export const ConfigPanel = () => {
             value={latency}
             onChange={(e) => updateNodeData(selectedNodeId, { latencyMs: parseInt(e.target.value) })}
             className="w-full accent-orange-500"
+            placeholder="Latency (ms)"
+            aria-label="Latency (ms)"
+            title="Latency (ms)"
           />
           <p className="text-[10px] text-zinc-400 dark:text-zinc-500 transition-colors">Simulated processing time per request.</p>
         </div>

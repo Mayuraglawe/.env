@@ -1,4 +1,4 @@
-// Main application entry point
+// Main application entry point - updated
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'

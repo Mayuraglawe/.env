@@ -1,4 +1,5 @@
 // Main application entry point - updated
+// Added a new comment for GitHub upload
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
